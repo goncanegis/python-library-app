@@ -84,14 +84,40 @@ menu_choice = menu()
 
 # While the user does not choose to exit, continue to display the menu
 while menu_choice != "q" and menu_choice != "Q":
+    # If user chooses 1, list books
     if menu_choice == "1":
         lib.list_books()
+
+    # If user chooses 2, ask for and validate values, and add book
     elif menu_choice == "2":
         title = input("Enter title: ").strip()
+        # If title is empty, ask the user to enter a title again until it is not empty
+        while not title:
+            print("Title cannot be empty \n")
+            title = input("Enter title: ").strip()
+
+        # Check if author is not empty
         author = input("Enter author: ").strip()
+        while not author:
+            print("Author cannot be empty \n")
+            author = input("Enter author: ").strip()
+
+        # Check if release year is not empty and is a number
         release_year = input("Enter release year: ").strip()
+        while not release_year or not release_year.isdigit():
+            print("Release year cannot be empty and must be a number \n")
+            release_year = input("Enter release year: ").strip()
+
+        # Check if number of pages is not empty and is a number
         num_pages = input("Enter number of pages: ").strip()
-        lib.add_book(title, author, release_year, num_pages)
+        while not num_pages or not num_pages.isdigit():
+            print("Number of pages cannot be empty and must be a number \n")
+            num_pages = input("Enter number of pages: ").strip()
+
+        # Add the book to the file
+        lib.add_book(title, author, int(release_year), int(num_pages))
+
+    # If user chooses 3, ask for title and remove book
     elif menu_choice == "3":
         title = input("Enter title: ")
         lib.remove_book(title)
