@@ -41,7 +41,7 @@ class Library:
     # Each book will be on a new line
     # Separate title, author, release year, and number of pages with a comma
     def add_book(self, title, author, release_year, num_pages):
-        book = f"{title}, {author}, {release_year}, {num_pages}"
+        book = f"{title},{author},{release_year},{num_pages}"
         self.write(book)
         print("Book added \n")
 
@@ -87,10 +87,10 @@ while menu_choice != "q" and menu_choice != "Q":
     if menu_choice == "1":
         lib.list_books()
     elif menu_choice == "2":
-        title = input("Enter title: ")
-        author = input("Enter author: ")
-        release_year = input("Enter release year: ")
-        num_pages = input("Enter number of pages: ")
+        title = input("Enter title: ").strip()
+        author = input("Enter author: ").strip()
+        release_year = input("Enter release year: ").strip()
+        num_pages = input("Enter number of pages: ").strip()
         lib.add_book(title, author, release_year, num_pages)
     elif menu_choice == "3":
         title = input("Enter title: ")
